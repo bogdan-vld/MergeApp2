@@ -3,13 +3,13 @@ package com.bvladoiu.merge
 import androidx.lifecycle.ViewModel
 
 object FileViewModel : ViewModel() {
-    private val data = ArrayList<MyData>()
+    private val data = ArrayList<FileType>()
     private var maxFileId = 0
     private var maxDirectoryId = 0
     private val MAX_FILE_COUNT = 30
 
 
-    fun getFiles(): MutableList<MyData> {
+    fun getFiles(): MutableList<FileType> {
         ensureData()
         return data
     }
@@ -34,14 +34,14 @@ object FileViewModel : ViewModel() {
         var result = 0
         if (data.size < MAX_FILE_COUNT) {
             result = MAX_FILE_COUNT - data.size
-            for (i in data.size..MAX_FILE_COUNT) data.add(MyData.File(maxFileId + i))
+            for (i in data.size..MAX_FILE_COUNT) data.add(FileType.File(maxFileId + i))
         }
         maxFileId = MAX_FILE_COUNT
         return result
     }
 
-    fun createNextDirectory(): MyData {
-        val result = MyData.Directory(getNextDirectoryId())
+    fun createNextDirectory(): FileType {
+        val result = FileType.Directory(getNextDirectoryId())
         return result
     }
 }

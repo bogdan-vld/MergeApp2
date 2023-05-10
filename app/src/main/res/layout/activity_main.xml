@@ -29,6 +29,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@drawable/note_add_fill0_wght400_grad0_opsz48" />
+        app:srcCompat="@drawable/file_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

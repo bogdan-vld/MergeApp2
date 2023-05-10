@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
 
 
-class MyAdapter(private var dataList: MutableList<MyData>) :
-    RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class FileAdapter(private var dataList: MutableList<FileType>) :
+    RecyclerView.Adapter<FileAdapter.ViewHolder>() {
 
     private var selectedItems = mutableListOf<Int>()
 
@@ -34,24 +34,12 @@ class MyAdapter(private var dataList: MutableList<MyData>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        // randomly set the layout params to take 1 or 2 columns
         val layoutParams = holder.itemView.layoutParams as FlexboxLayoutManager.LayoutParams
         if (dataList[position].size == Size.SMALL) {
             layoutParams.flexBasisPercent = 0.5f
-            //layoutParams.width =widthPx/2
-            // set the height based on the width using the aspect ratio
-            //layoutParams.height = (holder.itemView.width * 1.5f).toInt()
         } else {
             layoutParams.flexBasisPercent = 1.0f
-            // set the height based on the width using the aspect ratio
-            //layoutParams.height = (holder.itemView.width * 1.5f * 0.5f).toInt()
-            // set the width to half of the parent's width
-            //layoutParams.width = holder.itemView.width / 2
         }
-        //layoutParams.height = (layoutParams.width*1.5).toInt()
-        Log.d(
-            "LOGPOP", "onBindViewHolder: width:${layoutParams.width} height:${layoutParams.height}"
-        )
         holder.bind(dataList[position])
     }
 
@@ -81,13 +69,13 @@ class MyAdapter(private var dataList: MutableList<MyData>) :
         }
 
 
-        fun bind(myData: MyData) {
-            title.text = myData.toString()
-            when (myData is MyData.File) {
+        fun bind(fileType: FileType) {
+            title.text = fileType.toString()
+            when (fileType is FileType.File) {
                 true -> icon.setImageDrawable(
                     ContextCompat.getDrawable(
                         icon.context,
-                        R.drawable.draft_fill0_wght400_grad0_opsz48
+                        R.drawable.file
                     )
                 )
 
@@ -95,7 +83,7 @@ class MyAdapter(private var dataList: MutableList<MyData>) :
                     icon.setImageDrawable(
                         ContextCompat.getDrawable(
                             icon.context,
-                            R.drawable.outline_folder_24
+                            R.drawable.directory
                         )
                     )
                 }

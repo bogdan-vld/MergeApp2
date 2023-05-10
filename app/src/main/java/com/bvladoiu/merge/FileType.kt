@@ -2,7 +2,7 @@ package com.bvladoiu.merge
 
 import kotlin.random.Random
 
-sealed class MyData(val fileId: Int) {
+sealed class FileType(val fileId: Int) {
     var size: Size = Size.SMALL
 
     init {
@@ -11,10 +11,10 @@ sealed class MyData(val fileId: Int) {
         }
     }
 
-    data class File(val id: Int) : MyData(id){
+    data class File(val id: Int) : FileType(id){
         override fun toString(): String = "File $id"
     }
-    data class Directory(val id: Int) : MyData(id){
+    data class Directory(val id: Int) : FileType(id){
         override fun toString(): String = "Directory $id"
     }
 }

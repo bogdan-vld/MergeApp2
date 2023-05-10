@@ -39,13 +39,12 @@ class MainActivity : AppCompatActivity() {
             flexDirection = FlexDirection.ROW
             flexWrap = FlexWrap.WRAP
             alignItems = AlignItems.FLEX_START
-            // set the number of columns
         }
 
         val list = findViewById<RecyclerView>(R.id.list)
         list.layoutManager = layoutManager
         val data = FileViewModel.getFiles()
-        val adapter = MyAdapter(data)
+        val adapter = FileAdapter(data)
         list.adapter = adapter
 
         binding.fab.setOnClickListener { view ->
@@ -80,8 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun refresh() {
         val list = findViewById<RecyclerView>(R.id.list)
-        (list.adapter as MyAdapter).let {
-            //FileViewModel.merge(it.selectedItems)
+        (list.adapter as FileAdapter).let {
             it.updateItems()
         }
     }
